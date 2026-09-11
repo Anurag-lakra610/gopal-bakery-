@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gopal's - Freshly Baked Goodness</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Satisfy&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- TOP ANNOUNCEMENT BANNER -->
+    <div class="top-banner">
+        <div class="banner-content">
+            <span class="cupcake-icon">🧁</span>
+            <span>Freshly Baked Goodness, Delivered to Your Doorstep</span>
+        </div>
+    </div>
+
+    <!-- MAIN HERO CONTAINER WITH BACKGROUND -->
+    <header class="hero-header">
+        <div class="bg-overlay"></div>
+
+        <!-- NAVIGATION BAR -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- LOGO -->
+                <a href="#" class="brand-logo">
+                    <img src="assets/logo.png" alt="THE GOPAL's Logo" id="logo-img">
+                </a>
+
+                <!-- NAV MENU LINKS -->
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#cakes" class="nav-link">Cakes</a></li>
+                    <li class="nav-item"><a href="#bakery" class="nav-link">Bakery Items</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+
+                <!-- NAV ACTION BUTTONS -->
+                <div class="nav-actions">
+                    <a href="#order" class="btn btn-outline-gold">Order now</a>
+                    <a href="tel:9988340395" class="btn btn-solid-gold">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>99883 40395</span>
+                    </a>
+                </div>
+
+                <!-- MOBILE HAMBURGER TOGGLE -->
+                <div class="mobile-toggle" id="mobile-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </nav>
+
+        <!-- HERO MAIN SECTION -->
+        <section class="hero-section" id="home">
+            <div class="hero-container">
+                
+                <!-- HERO LEFT COLUMN: TEXT CONTENT & BADGES -->
+                <div class="hero-left">
+                    <div class="tagline-wrapper">
+                        <span class="tagline-text">Freshly Baked With Love</span>
+                        <span class="tagline-line"></span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Delicious Cakes & Treats <br>
+                        for Every Celebration
+                    </h1>
+
+                    <p class="hero-description">
+                        Freshly baked cakes, pastries, and sweet treats made with love every day.
+                    </p>
+
+                    <div class="cta-wrapper">
+                        <a href="#shop" class="shop-now-link">Shop Now</a>
+                    </div>
+
+                    <!-- THUMBNAIL BADGES GRID -->
+                    <div class="thumbnails-container">
+                        <div class="thumb-badge active" data-target="cake-main">
+                            <div class="badge-inner">
+                                <img src="assets/badge-cake.png" alt="Chocolate Drip Cake">
+                            </div>
+                        </div>
+
+                        <div class="thumb-badge" data-target="cookies-main">
+                            <div class="badge-inner">
+                                <img src="assets/badge-cookies.png" alt="Chocolate Chip Cookies">
+                            </div>
+                        </div>
+
+                        <div class="thumb-badge" data-target="pink-main">
+                            <div class="badge-inner">
+                                <img src="assets/badge-pink-cake.png" alt="Pink Vintage Cake">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HERO RIGHT COLUMN: FEATURED IMAGES -->
+                <div class="hero-right">
+                    <div class="hero-stage">
+                        
+                        <!-- MAIN HERO IMAGE CARD -->
+                        <div class="main-card-container">
+                            <img src="assets/hero-card-cake.jpg" alt="Delicious Celebration Cake" id="featured-hero-img">
+                        </div>
+
+                        <!-- OVERLAPPING SECONDARY IMAGE CARD -->
+                        <div class="overlap-card-container">
+                            <img src="assets/hero-card-cookies.jpg" alt="Assorted Bakery Cookies & Coffee" id="secondary-hero-img">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BOTTOM ORGANIC WHITE WAVE TRANSITION -->
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,32 C280,95 560,110 840,45 C1120,-20 1320,50 1440,65 L1440,120 L0,120 Z" fill="#FFFFFF"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- SECTION BELOW HERO FOR SMOOTH CONTINUITY -->
+    <main class="content-section">
+        <div class="container">
+            <div class="welcome-block">
+                <h2>Welcome to The Gopal's Bakery</h2>
+                <p>Crafting sweet memories with every bite since inception. Explore our handcrafted cakes, freshly baked cookies, and artisanal treats.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Vanilla JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
