@@ -81,12 +81,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (track && btnPrev && btnNext && progressFill) {
         const scrollAmount = 330;
 
-        btnPrev.addEventListener('click', () => {
-            track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        btnNext.addEventListener('click', () => {
+            const maxScrollLeft = track.scrollWidth - track.clientWidth;
+            if (track.scrollLeft >= maxScrollLeft - 15) {
+                track.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
         });
 
-        btnNext.addEventListener('click', () => {
-            track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        btnPrev.addEventListener('click', () => {
+            const maxScrollLeft = track.scrollWidth - track.clientWidth;
+            if (track.scrollLeft <= 15) {
+                track.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+            } else {
+                track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            }
         });
 
         const updateProgress = () => {

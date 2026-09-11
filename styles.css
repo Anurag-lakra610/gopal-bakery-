@@ -569,7 +569,7 @@ body {
     flex: 0 0 305px;
     background-color: #FFF0F0;
     border-radius: 18px;
-    padding: 16px;
+    padding: 12px;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 15px rgba(110, 14, 27, 0.04);
@@ -585,7 +585,7 @@ body {
     height: 215px;
     border-radius: 14px;
     overflow: hidden;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .card-image-wrapper img {
