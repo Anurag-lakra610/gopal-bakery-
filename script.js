@@ -72,4 +72,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- SECTION 2 CAROUSEL SLIDER CONTROLS & PROGRESS BAR ---
+    const track = document.getElementById('carousel-track');
+    const btnPrev = document.getElementById('slide-prev');
+    const btnNext = document.getElementById('slide-next');
+    const progressFill = document.getElementById('progress-fill');
+
+    if (track && btnPrev && btnNext && progressFill) {
+        const scrollAmount = 330;
+
+        btnPrev.addEventListener('click', () => {
+            track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        btnNext.addEventListener('click', () => {
+            track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+
+        const updateProgress = () => {
+            const maxScrollLeft = track.scrollWidth - track.clientWidth;
+            if (maxScrollLeft > 0) {
+                const scrollRatio = track.scrollLeft / maxScrollLeft;
+                const minWidthPercent = 25;
+                const fillPercent = minWidthPercent + (scrollRatio * (100 - minWidthPercent));
+                progressFill.style.width = `${fillPercent}%`;
+            } else {
+                progressFill.style.width = '100%';
+            }
+        };
+
+        track.addEventListener('scroll', updateProgress);
+        window.addEventListener('resize', updateProgress);
+        updateProgress();
+    }
+
 });

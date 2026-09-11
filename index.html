@@ -137,15 +137,100 @@
         </div>
     </header>
 
-    <!-- SECTION BELOW HERO FOR SMOOTH CONTINUITY -->
-    <main class="content-section">
-        <div class="container">
-            <div class="welcome-block">
-                <h2>Welcome to The Gopal's Bakery</h2>
-                <p>Crafting sweet memories with every bite since inception. Explore our handcrafted cakes, freshly baked cookies, and artisanal treats.</p>
+    <!-- SECTION 2: FROM OUR BAKERY TO YOUR DOOR (CAROUSEL SLIDER) -->
+    <section class="products-section" id="products">
+        <div class="products-container">
+            
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+                <h2 class="section-title">FROM OUR BAKERY TO YOUR DOOR</h2>
+                <p class="section-subtitle">
+                    Discover freshly baked cakes and delicious treats, made with love for every celebration.
+                </p>
             </div>
+
+            <!-- CAROUSEL SLIDER WRAPPER -->
+            <div class="carousel-wrapper">
+                
+                <!-- NAVIGATION BUTTON: LEFT -->
+                <button class="carousel-nav nav-prev" id="slide-prev" aria-label="Previous Slide">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+
+                <!-- CAROUSEL CARDS TRACK -->
+                <div class="carousel-track" id="carousel-track">
+                    
+                    <!-- CARD 1 -->
+                    <div class="product-card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/card-strawberry.jpg" alt="Strawberry Meringue Cake">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Strawberry Meringue Cake</h3>
+                            <p class="card-desc">Fresh strawberry layers with delicate meringue rosettes and light cream.</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div class="product-card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/card-chocolate-truffle.jpg" alt="Chocolate Truffle Cake">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Chocolate Truffle Cake</h3>
+                            <p class="card-desc">A rich and indulgent chocolate experience for true chocolate lovers.</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div class="product-card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/card-cherry-delight.jpg" alt="Chocolate Delight Cake">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Chocolate Delight Cake</h3>
+                            <p class="card-desc">Rich chocolate layers topped with delicious cream and irresistible chocolate flavours.</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 4 -->
+                    <div class="product-card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/card-black-forest.jpg" alt="Black Forest Cake">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Black Forest Cake</h3>
+                            <p class="card-desc">A classic favourite with soft chocolate layers, fresh cream, and juicy cherries.</p>
+                        </div>
+                    </div>
+
+                    <!-- CARD 5 -->
+                    <div class="product-card">
+                        <div class="card-image-wrapper">
+                            <img src="assets/card-chocolate-hazelnut.jpg" alt="Fresh Cream Cake">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Fresh Cream Cake</h3>
+                            <p class="card-desc">Light, creamy, and delicious, perfect for birthdays and every celebration.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- NAVIGATION BUTTON: RIGHT -->
+                <button class="carousel-nav nav-next" id="slide-next" aria-label="Next Slide">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+            </div>
+
+            <!-- SLIDER PROGRESS BAR -->
+            <div class="carousel-progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
         </div>
-    </main>
+    </section>
 
     <!-- Vanilla JavaScript -->
     <script src="script.js"></script>
