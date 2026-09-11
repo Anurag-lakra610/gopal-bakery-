@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const featuredImg = document.getElementById('featured-hero-img');
     const secondaryImg = document.getElementById('secondary-hero-img');
 
-    // Mapping for product assets
+    // Mapping for product assets (all full-ratio rectangular images)
     const productMap = {
         'cake-main': {
             main: 'assets/hero-card-cake.jpg',
@@ -17,11 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'cookies-main': {
             main: 'assets/hero-card-cookies.jpg',
-            secondary: 'assets/badge-cake.png'
+            secondary: 'assets/hero-pink-cake-large.jpg'
         },
         'pink-main': {
-            main: 'assets/badge-pink-cake.png',
-            secondary: 'assets/badge-cookies.png'
+            main: 'assets/hero-pink-cake-large.jpg',
+            secondary: 'assets/hero-card-cookies.jpg'
         }
     };
 
