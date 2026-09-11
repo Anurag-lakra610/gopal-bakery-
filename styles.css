@@ -16,8 +16,8 @@
     --overlay-dark: rgba(15, 12, 9, 0.75);
     --text-white: #FFFFFF;
     --text-muted: #D1D5DB;
-    --font-heading: 'Montserrat', sans-serif;
-    --font-body: 'Poppins', sans-serif;
+    --font-heading: 'Fredoka', sans-serif;
+    --font-body: 'Sniglet', cursive, sans-serif;
     --font-script: 'Satisfy', cursive;
     --container-width: 1380px;
 }
@@ -118,8 +118,9 @@ body {
 .nav-link {
     color: var(--text-white);
     text-decoration: none;
-    font-size: 1.02rem;
-    font-weight: 500;
+    font-family: var(--font-body);
+    font-size: 21px;
+    font-weight: 400;
     transition: color 0.3s ease;
     position: relative;
 }
@@ -246,12 +247,12 @@ body {
 
 .hero-title {
     font-family: var(--font-heading);
-    font-size: 3.3rem;
-    font-weight: 800;
-    line-height: 1.18;
+    font-size: 59px;
+    font-weight: 500;
+    line-height: 66px;
     color: var(--text-white);
     margin-bottom: 20px;
-    letter-spacing: -0.5px;
+    letter-spacing: 0%;
 }
 
 .hero-description {
