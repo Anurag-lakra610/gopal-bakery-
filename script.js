@@ -116,4 +116,82 @@ document.addEventListener('DOMContentLoaded', () => {
         updateProgress();
     }
 
+    // --- SECTION 8: SEAMLESS INFINITE LOOP TESTIMONIALS SLIDER ---
+    const tTrack = document.getElementById('testimonials-track');
+    const tPrevBtn = document.getElementById('t-prev-btn');
+    const tNextBtn = document.getElementById('t-next-btn');
+
+    if (tTrack && tPrevBtn && tNextBtn) {
+        const originalCards = Array.from(tTrack.children);
+        const totalOriginal = originalCards.length;
+
+        // Clone cards to append to end
+        originalCards.forEach(card => {
+            const cloneEnd = card.cloneNode(true);
+            cloneEnd.classList.add('clone-end');
+            tTrack.appendChild(cloneEnd);
+        });
+
+        // Clone cards to prepend to start
+        originalCards.slice().reverse().forEach(card => {
+            const cloneStart = card.cloneNode(true);
+            cloneStart.classList.add('clone-start');
+            tTrack.insertBefore(cloneStart, tTrack.firstChild);
+        });
+
+        const allCards = Array.from(tTrack.children);
+        let currentIndex = totalOriginal; // Start at index of first real card
+        let isTransitioning = false;
+
+        function calculateOffset(index) {
+            const cardWidth = allCards[0].offsetWidth;
+            const gap = 36;
+            const viewportWidth = window.innerWidth;
+            return (viewportWidth - cardWidth) / 2 - index * (cardWidth + gap);
+        }
+
+        function setSliderPosition(index, animate = true) {
+            if (!animate) {
+                tTrack.style.transition = 'none';
+            } else {
+                tTrack.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+            }
+            const offset = calculateOffset(index);
+            tTrack.style.transform = `translateX(${offset}px)`;
+        }
+
+        // Initialize position at first real card without animation
+        setSliderPosition(currentIndex, false);
+
+        tNextBtn.addEventListener('click', () => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            currentIndex++;
+            setSliderPosition(currentIndex, true);
+        });
+
+        tPrevBtn.addEventListener('click', () => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            currentIndex--;
+            setSliderPosition(currentIndex, true);
+        });
+
+        tTrack.addEventListener('transitionend', () => {
+            isTransitioning = false;
+            // Seamless wrap around when passing real card boundaries
+            if (currentIndex >= totalOriginal * 2) {
+                currentIndex = totalOriginal;
+                setSliderPosition(currentIndex, false);
+            } else if (currentIndex < totalOriginal) {
+                currentIndex = totalOriginal * 2 - 1;
+                setSliderPosition(currentIndex, false);
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            setSliderPosition(currentIndex, false);
+        });
+    }
+
 });
