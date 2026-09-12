@@ -1,4 +1,11 @@
 {
+  "name": "gopal-bakery",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo 'Static site ready'",
+    "start": "node server.js"
+  },
   "dependencies": {
     "jpeg-js": "^0.4.4",
     "pngjs": "^7.0.0"
