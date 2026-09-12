@@ -1,15 +1,53 @@
 // ==========================================================================
-// THE GOPAL'S BAKERY - INTERACTIVE SCRIPTS
+// THE GOPAL'S BAKERY - FULL INTERACTIVE SCRIPTS & BUTTON HANDLERS
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // --- TOAST NOTIFICATION HELPER ---
+    function showToast(message) {
+        let toast = document.getElementById('gopal-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'gopal-toast';
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background-color: #5C0612;
+                color: #FFFFFF;
+                padding: 16px 28px;
+                border-radius: 30px;
+                font-family: 'Sniglet', cursive, sans-serif;
+                font-size: 1rem;
+                box-shadow: 0 10px 30px rgba(92, 6, 18, 0.4);
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                transition: all 0.4s ease;
+                opacity: 0;
+                transform: translateY(20px);
+                border: 2px solid #EAA00D;
+            `;
+            document.body.appendChild(toast);
+        }
+
+        toast.innerHTML = `<span>🍰</span> ${message}`;
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateY(0)';
+
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateY(20px)';
+        }, 3200);
+    }
     
     // --- THUMBNAIL BADGE INTERACTION & IMAGE SWAPPER ---
     const badges = document.querySelectorAll('.thumb-badge');
     const featuredImg = document.getElementById('featured-hero-img');
     const secondaryImg = document.getElementById('secondary-hero-img');
 
-    // Mapping for product assets (all full-ratio rectangular images)
     const productMap = {
         'cake-main': {
             main: 'assets/hero-card-cake.jpg',
@@ -27,14 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     badges.forEach(badge => {
         badge.addEventListener('click', () => {
-            // Remove active class from all badges
             badges.forEach(b => b.classList.remove('active'));
-            // Add active class to clicked badge
             badge.classList.add('active');
 
             const targetKey = badge.getAttribute('data-target');
             if (productMap[targetKey]) {
-                // Fade out main image slightly
                 featuredImg.style.opacity = '0.3';
                 featuredImg.style.transform = 'scale(0.96)';
 
@@ -48,19 +83,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- ACTIVE NAVBAR LINK HANDLER ---
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            navLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
+    // --- SMOOTH SCROLLING FOR ALL ANCHOR LINKS (#) & NAV CLOSE ---
+    const allAnchorLinks = document.querySelectorAll('a[href^="#"]');
+    const navMenu = document.getElementById('nav-menu');
+    const mobileToggle = document.getElementById('mobile-toggle');
+
+    allAnchorLinks.forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            const targetId = anchor.getAttribute('href');
+            if (targetId && targetId !== '#') {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    // Close mobile navigation drawer if open
+                    if (navMenu && navMenu.classList.contains('mobile-active')) {
+                        navMenu.classList.remove('mobile-active');
+                        if (mobileToggle) {
+                            const icon = mobileToggle.querySelector('i');
+                            if (icon) {
+                                icon.classList.add('fa-bars');
+                                icon.classList.remove('fa-xmark');
+                            }
+                        }
+                    }
+                }
+            }
         });
     });
 
     // --- MOBILE MENU TOGGLE ---
-    const mobileToggle = document.getElementById('mobile-toggle');
-    const navMenu = document.getElementById('nav-menu');
-
     if (mobileToggle && navMenu) {
         mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('mobile-active');
@@ -71,6 +127,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- SEARCH BUTTON INTERACTION ---
+    const searchBtn = document.getElementById('search-btn');
+    if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+            const query = prompt("What delicious treat are you looking for? (e.g., Chocolate Cake, Cookies, Pastries)");
+            if (query && query.trim() !== "") {
+                showToast(`Searching for "${query.trim()}"... Check our products section!`);
+                const productsSec = document.getElementById('products');
+                if (productsSec) {
+                    productsSec.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    }
+
+    // --- BUTTON ORDER / CLICK FEEDBACK HANDLERS ---
+    const actionButtons = document.querySelectorAll('.btn-card-add, .btn-hero-primary, .btn-feature-gold, .btn-pastry-gold, .btn-community-gold, .btn-cta-gold');
+    actionButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const text = btn.innerText || "Order";
+            showToast(`Opening ${text}... Freshly baked happiness is on its way!`);
+        });
+    });
 
     // --- SECTION 2 CAROUSEL SLIDER CONTROLS & PROGRESS BAR ---
     const track = document.getElementById('carousel-track');
@@ -140,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const allCards = Array.from(tTrack.children);
-        let currentIndex = totalOriginal; // Start at index of first real card
+        let currentIndex = totalOriginal;
         let isTransitioning = false;
 
         function calculateOffset(index) {
@@ -160,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tTrack.style.transform = `translateX(${offset}px)`;
         }
 
-        // Initialize position at first real card without animation
         setSliderPosition(currentIndex, false);
 
         tNextBtn.addEventListener('click', () => {
@@ -179,7 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tTrack.addEventListener('transitionend', () => {
             isTransitioning = false;
-            // Seamless wrap around when passing real card boundaries
             if (currentIndex >= totalOriginal * 2) {
                 currentIndex = totalOriginal;
                 setSliderPosition(currentIndex, false);
