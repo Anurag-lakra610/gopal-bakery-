@@ -482,6 +482,23 @@ body {
     }
     .nav-menu {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #110D0A;
+        padding: 20px 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        z-index: 999;
+        border-bottom: 2px solid var(--primary-gold);
+    }
+    .nav-menu.mobile-active {
+        display: block !important;
+    }
+    .nav-list {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
     }
     .mobile-toggle {
         display: block;
@@ -490,23 +507,26 @@ body {
 
 @media (max-width: 576px) {
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2.1rem;
+    }
+    .hero-description {
+        font-size: 0.98rem;
     }
     .nav-actions {
         display: none;
     }
     .thumb-badge {
-        width: 75px;
-        height: 75px;
+        width: 70px;
+        height: 70px;
     }
     .hero-stage {
-        height: 300px;
-    }
-    .main-card-container {
         height: 280px;
     }
+    .main-card-container {
+        height: 260px;
+    }
     .overlap-card-container {
-        height: 150px;
+        height: 140px;
     }
 }
 
