@@ -531,8 +531,102 @@ body {
 }
 
 /* ==========================================================================
-   SECTION 2: FROM OUR BAKERY TO YOUR DOOR (CAROUSEL SLIDER)
+   SCROLL REVEAL & 2026 INTERACTION SYSTEM
    ========================================================================== */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+[data-reveal="scale-up"] {
+    transform: scale(0.93) translateY(20px);
+}
+
+[data-reveal].reveal-active {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Category Filter Bar */
+.category-filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 35px 0 45px 0;
+    flex-wrap: wrap;
+}
+
+.cat-tab {
+    font-family: var(--font-body);
+    font-size: 0.98rem;
+    font-weight: 500;
+    color: #555555;
+    background-color: #F8F5F2;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 10px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cat-tab:hover {
+    color: #5C0612;
+    background-color: #FFF0F3;
+    border-color: rgba(92, 6, 18, 0.2);
+    transform: translateY(-2px);
+}
+
+.cat-tab.active {
+    background-color: #5C0612;
+    color: #FFFFFF;
+    border-color: #5C0612;
+    box-shadow: 0 6px 18px rgba(92, 6, 18, 0.25);
+}
+
+/* Card Badges & Order Button */
+.card-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background-color: var(--primary-gold);
+    color: #FFFFFF;
+    font-family: var(--font-nav);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 5px 14px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(234, 160, 13, 0.35);
+    z-index: 2;
+}
+
+.btn-card-add {
+    display: inline-block;
+    margin-top: 15px;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #5C0612;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.25s ease;
+}
+
+.btn-card-add:hover {
+    color: var(--primary-gold);
+    transform: translateX(4px);
+}
 .products-section {
     padding: 70px 0 90px 0;
     background-color: #FFFFFF;

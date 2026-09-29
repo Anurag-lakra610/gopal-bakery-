@@ -1,10 +1,31 @@
 // ==========================================================================
-// THE GOPAL'S BAKERY - FULL INTERACTIVE SCRIPTS & BUTTON HANDLERS
+// THE GOPAL'S BAKERY - 2026 INTERACTIVE AWWWARDS ENGINE
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- TOAST NOTIFICATION HELPER ---
+    // --- 1. SCROLL REVEAL MANAGER (INTERSECTION OBSERVER) ---
+    const revealElements = document.querySelectorAll('[data-reveal]');
+    
+    if ('IntersectionObserver' in window && revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+        // Fallback for older browsers
+        revealElements.forEach(el => el.classList.add('reveal-active'));
+    }
+
+    // --- 2. ELEGANT TOAST NOTIFICATION ENGINE ---
     function showToast(message) {
         let toast = document.getElementById('gopal-toast');
         if (!toast) {
@@ -12,38 +33,68 @@ document.addEventListener('DOMContentLoaded', () => {
             toast.id = 'gopal-toast';
             toast.style.cssText = `
                 position: fixed;
-                bottom: 30px;
-                right: 30px;
+                bottom: 32px;
+                right: 32px;
                 background-color: #5C0612;
                 color: #FFFFFF;
                 padding: 16px 28px;
                 border-radius: 30px;
                 font-family: 'Sniglet', cursive, sans-serif;
                 font-size: 1rem;
-                box-shadow: 0 10px 30px rgba(92, 6, 18, 0.4);
+                box-shadow: 0 12px 35px rgba(92, 6, 18, 0.45);
                 z-index: 9999;
                 display: flex;
                 align-items: center;
                 gap: 12px;
-                transition: all 0.4s ease;
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(24px);
                 border: 2px solid #EAA00D;
             `;
             document.body.appendChild(toast);
         }
 
-        toast.innerHTML = `<span>🍰</span> ${message}`;
+        toast.innerHTML = `<span>🧁</span> ${message}`;
         toast.style.opacity = '1';
         toast.style.transform = 'translateY(0)';
 
         setTimeout(() => {
             toast.style.opacity = '0';
-            toast.style.transform = 'translateY(20px)';
+            toast.style.transform = 'translateY(24px)';
         }, 3200);
     }
     
-    // --- THUMBNAIL BADGE INTERACTION & IMAGE SWAPPER ---
+    // --- 3. CATEGORY FILTER TABS (SECTION 2) ---
+    const catTabs = document.querySelectorAll('.cat-tab');
+    const productCards = document.querySelectorAll('.product-card');
+
+    catTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            catTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const filter = tab.getAttribute('data-filter');
+
+            productCards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (filter === 'all' || cardCat === filter) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(15px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 250);
+                }
+            });
+        });
+    });
+
+    // --- 4. THUMBNAIL BADGE INTERACTION & IMAGE SWAPPER ---
     const badges = document.querySelectorAll('.thumb-badge');
     const featuredImg = document.getElementById('featured-hero-img');
     const secondaryImg = document.getElementById('secondary-hero-img');
@@ -83,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- SMOOTH SCROLLING FOR ALL ANCHOR LINKS (#) & NAV CLOSE ---
+    // --- 5. SMOOTH SCROLLING FOR ALL ANCHOR LINKS (#) & NAV CLOSE ---
     const allAnchorLinks = document.querySelectorAll('a[href^="#"]');
     const navMenu = document.getElementById('nav-menu');
     const mobileToggle = document.getElementById('mobile-toggle');
@@ -100,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         block: 'start'
                     });
 
-                    // Close mobile navigation drawer if open
                     if (navMenu && navMenu.classList.contains('mobile-active')) {
                         navMenu.classList.remove('mobile-active');
                         if (mobileToggle) {
@@ -116,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- MOBILE MENU TOGGLE ---
+    // --- 6. MOBILE MENU TOGGLE ---
     if (mobileToggle && navMenu) {
         mobileToggle.addEventListener('click', () => {
             navMenu.classList.toggle('mobile-active');
@@ -128,38 +178,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- SEARCH BUTTON INTERACTION ---
-    const searchBtn = document.getElementById('search-btn');
-    if (searchBtn) {
-        searchBtn.addEventListener('click', () => {
-            const query = prompt("What delicious treat are you looking for? (e.g., Chocolate Cake, Cookies, Pastries)");
-            if (query && query.trim() !== "") {
-                showToast(`Searching for "${query.trim()}"... Check our products section!`);
-                const productsSec = document.getElementById('products');
-                if (productsSec) {
-                    productsSec.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        });
-    }
-
-    // --- BUTTON ORDER / CLICK FEEDBACK HANDLERS ---
+    // --- 7. BUTTON ORDER / CLICK FEEDBACK HANDLERS ---
     const actionButtons = document.querySelectorAll('.btn-card-add, .btn-hero-primary, .btn-feature-gold, .btn-pastry-gold, .btn-community-gold, .btn-cta-gold');
     actionButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const text = btn.innerText || "Order";
-            showToast(`Opening ${text}... Freshly baked happiness is on its way!`);
+            const text = btn.getAttribute('data-item') || btn.innerText || "Order";
+            showToast(`Opening order window for ${text}... Freshly baked sweetness awaits!`);
         });
     });
 
-    // --- SECTION 2 CAROUSEL SLIDER CONTROLS & PROGRESS BAR ---
+    // --- 8. SECTION 2 CAROUSEL SLIDER CONTROLS & PROGRESS BAR ---
     const track = document.getElementById('carousel-track');
     const btnPrev = document.getElementById('slide-prev');
     const btnNext = document.getElementById('slide-next');
     const progressFill = document.getElementById('progress-fill');
 
     if (track && btnPrev && btnNext && progressFill) {
-        const scrollAmount = 330;
+        const scrollAmount = 350;
 
         btnNext.addEventListener('click', () => {
             const maxScrollLeft = track.scrollWidth - track.clientWidth;
@@ -196,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateProgress();
     }
 
-    // --- SECTION 8: SEAMLESS INFINITE LOOP TESTIMONIALS SLIDER ---
+    // --- 9. SECTION 8: SEAMLESS INFINITE LOOP TESTIMONIALS SLIDER ---
     const tTrack = document.getElementById('testimonials-track');
     const tPrevBtn = document.getElementById('t-prev-btn');
     const tNextBtn = document.getElementById('t-next-btn');

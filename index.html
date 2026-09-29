@@ -142,15 +142,24 @@
         <div class="products-container">
             
             <!-- SECTION HEADER -->
-            <div class="section-header">
+            <div class="section-header" data-reveal="fade-up">
                 <h2 class="section-title">FROM OUR BAKERY TO YOUR DOOR</h2>
                 <p class="section-subtitle">
                     Discover freshly baked cakes and delicious treats, made with love for every celebration.
                 </p>
             </div>
 
+            <!-- INTERACTIVE CATEGORY FILTER TABS (2026 TREND) -->
+            <div class="category-filter-bar" data-reveal="fade-up">
+                <button class="cat-tab active" data-filter="all">All Treats</button>
+                <button class="cat-tab" data-filter="cakes">Celebration Cakes</button>
+                <button class="cat-tab" data-filter="cookies">Fresh Cookies</button>
+                <button class="cat-tab" data-filter="pastries">Pastries & Croissants</button>
+                <button class="cat-tab" data-filter="breads">Artisan Breads</button>
+            </div>
+
             <!-- CAROUSEL SLIDER WRAPPER -->
-            <div class="carousel-wrapper">
+            <div class="carousel-wrapper" data-reveal="fade-up">
                 
                 <!-- NAVIGATION BUTTON: LEFT -->
                 <button class="carousel-nav nav-prev" id="slide-prev" aria-label="Previous Slide">
@@ -161,57 +170,65 @@
                 <div class="carousel-track" id="carousel-track">
                     
                     <!-- CARD 1 -->
-                    <div class="product-card">
+                    <div class="product-card" data-category="cakes">
                         <div class="card-image-wrapper">
                             <img src="assets/card-strawberry.jpg" alt="Strawberry Meringue Cake">
+                            <span class="card-badge">Fresh</span>
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">Strawberry Meringue Cake</h3>
                             <p class="card-desc">Fresh strawberry layers with delicate meringue rosettes and light cream.</p>
+                            <button class="btn-card-add" data-item="Strawberry Meringue Cake">Order Now &rarr;</button>
                         </div>
                     </div>
 
                     <!-- CARD 2 -->
-                    <div class="product-card">
+                    <div class="product-card" data-category="cakes">
                         <div class="card-image-wrapper">
                             <img src="assets/card-chocolate-truffle.jpg" alt="Chocolate Truffle Cake">
+                            <span class="card-badge">Best Seller</span>
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">Chocolate Truffle Cake</h3>
                             <p class="card-desc">A rich and indulgent chocolate experience for true chocolate lovers.</p>
+                            <button class="btn-card-add" data-item="Chocolate Truffle Cake">Order Now &rarr;</button>
                         </div>
                     </div>
 
                     <!-- CARD 3 -->
-                    <div class="product-card">
+                    <div class="product-card" data-category="cakes">
                         <div class="card-image-wrapper">
                             <img src="assets/card-cherry-delight.jpg" alt="Chocolate Delight Cake">
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">Chocolate Delight Cake</h3>
                             <p class="card-desc">Rich chocolate layers topped with delicious cream and irresistible chocolate flavours.</p>
+                            <button class="btn-card-add" data-item="Chocolate Delight Cake">Order Now &rarr;</button>
                         </div>
                     </div>
 
                     <!-- CARD 4 -->
-                    <div class="product-card">
+                    <div class="product-card" data-category="cakes">
                         <div class="card-image-wrapper">
                             <img src="assets/card-black-forest.jpg" alt="Black Forest Cake">
+                            <span class="card-badge">Classic</span>
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">Black Forest Cake</h3>
                             <p class="card-desc">A classic favourite with soft chocolate layers, fresh cream, and juicy cherries.</p>
+                            <button class="btn-card-add" data-item="Black Forest Cake">Order Now &rarr;</button>
                         </div>
                     </div>
 
                     <!-- CARD 5 -->
-                    <div class="product-card">
+                    <div class="product-card" data-category="cakes">
                         <div class="card-image-wrapper">
                             <img src="assets/card-chocolate-hazelnut.jpg" alt="Fresh Cream Cake">
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">Fresh Cream Cake</h3>
                             <p class="card-desc">Light, creamy, and delicious, perfect for birthdays and every celebration.</p>
+                            <button class="btn-card-add" data-item="Fresh Cream Cake">Order Now &rarr;</button>
                         </div>
                     </div>
 
